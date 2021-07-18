@@ -43,11 +43,11 @@ class _MainPageState extends State<MainPage> {
 
   @override
   void initState() {
-    array1 = [for (var i = 0; i < 10000; i++) rng.nextInt(1000)];
-    array2 = array1;
-    array3 = array1;
-    array4 = array1;
-    array5 = array1;
+    array1 = [for (var i = 0; i < 20000; i++) rng.nextInt(1000)];
+    array2 = [for (var i = 0; i < 20000; i++) array1[i]];
+    array3 = [for (var i = 0; i < 20000; i++) array1[i]];
+    array4 = [for (var i = 0; i < 20000; i++) array1[i]];
+    array5 = [for (var i = 0; i < 20000; i++) array1[i]];
     super.initState();
   }
 
@@ -337,24 +337,24 @@ class _MainPageState extends State<MainPage> {
               Center(
                 child: ElevatedButton.icon(
                   onPressed: () async {
-                    busquedaSecuencialValue =
-                        await algorithms.busquedaSecuencial(
-                      array1,
-                      2,
-                    );
-                    bubbleSortValue = await algorithms.bubbleSort(array2);
-                    insertionSortValue = await algorithms.insertionSort(array3);
-                    quickSortValue = await algorithms.quicksort(array4);
                     // quickSortValue = await algorithms.quicksort(
                     //   array,
                     //   0,
                     //   array.length - 1,
                     // );
+
+                    busquedaSecuencialValue =
+                        await algorithms.busquedaSecuencial(
+                      array1,
+                      array1[570],
+                    );
+                    bubbleSortValue = await algorithms.bubbleSort(array2);
+                    insertionSortValue = await algorithms.insertionSort(array3);
+                    quickSortValue = await algorithms.quicksort(array4);
                     binarySearchValue = await algorithms.binarySearch(
                       array5,
-                      rng.nextInt(1000),
+                      array5[570],
                     );
-
                     setState(() {});
                   },
                   icon: Icon(Icons.access_time_rounded),

@@ -8,29 +8,36 @@ class Algorithms {
     stopwatch.reset();
     for (var item in array) {
       if (item == dato) {
-        break;
+        continue;
       }
     }
     stopwatch.stop();
+    print("secuencial$array");
     print(
         'busquedaSecuencial() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
+
     return stopwatch.elapsed.inMicroseconds / 100000;
   }
 
-  Future<double> bubbleSort(List array) async {
+  Future<double> bubbleSort(List<int> array) async {
     final stopwatch = Stopwatch()..start();
 
     stopwatch.reset();
 
-    for (var i = 0; i <= array.length; i++) {
-      for (var j = 0; j < array.length - 1; j++) {
-        if (array[j] > array[j + 1]) {
-          array[j] = array[j + 1];
-          array[j + 1] = array[j];
+    int n = array.length;
+    int temp = 0;
+    for (int i = 0; i < n; i++) {
+      for (int j = 1; j < (n - i); j++) {
+        if (array[j - 1] > array[j]) {
+          //swap elements
+          temp = array[j - 1];
+          array[j - 1] = array[j];
+          array[j] = temp;
         }
       }
     }
     stopwatch.stop();
+    print("bubble $array");
     print(
         'bubbleSort() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
     return stopwatch.elapsed.inMicroseconds / 100000;
@@ -53,6 +60,7 @@ class Algorithms {
     }
 
     stopwatch.stop();
+    print("insertion $array");
     print(
         'insertionSort() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
     return stopwatch.elapsed.inMicroseconds / 100000;
@@ -79,6 +87,7 @@ class Algorithms {
       }
     }
     stopwatch.stop();
+    print("binary $array");
     print(
         'binarySearch() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
     return stopwatch.elapsed.inMicroseconds / 100000;
@@ -153,6 +162,7 @@ class Algorithms {
     }
 
     stopwatch.stop();
+    print("quicksort $array");
     print(
         'quickSort() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
     return stopwatch.elapsed.inMicroseconds / 100000;

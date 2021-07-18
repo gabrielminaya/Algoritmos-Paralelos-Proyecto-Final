@@ -1,3 +1,6 @@
+import 'stack.dart';
+// import 'package:flutter/cupertino.dart';
+
 class Algorithms {
   Future<double> busquedaSecuencial(List<int> array, dato) async {
     final stopwatch = Stopwatch()..start();
@@ -28,20 +31,8 @@ class Algorithms {
       }
     }
     stopwatch.stop();
-    print('bubbleSort() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
-    return stopwatch.elapsed.inMicroseconds / 100000;
-  }
-
-  Future<double> quickSort(List array, int izq, int der) async {
-    final stopwatch = Stopwatch()..start();
-
-    stopwatch.reset();
-
-    // quickSortExec(array, izq, der);
-    array.sort();
-
-    stopwatch.stop();
-    print('quickSort() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
+    print(
+        'bubbleSort() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
     return stopwatch.elapsed.inMicroseconds / 100000;
   }
 
@@ -62,7 +53,8 @@ class Algorithms {
     }
 
     stopwatch.stop();
-    print('insertionSort() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
+    print(
+        'insertionSort() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
     return stopwatch.elapsed.inMicroseconds / 100000;
   }
 
@@ -87,7 +79,125 @@ class Algorithms {
       }
     }
     stopwatch.stop();
-    print('binarySearch() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
+    print(
+        'binarySearch() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
     return stopwatch.elapsed.inMicroseconds / 100000;
   }
+
+  // int partition(List arr, l, h) {
+  //   int i = (l - 1);
+  //   int x = arr[h];
+
+  //   for (int j = l; j <= h; j++) {
+  //     if (arr[j] <= x) {
+  //       // increment index of smaller element
+  //       i = i + 1;
+  //       int temp = arr[i];
+  //       arr[i] = arr[j];
+  //       arr[j] = temp;
+  //     }
+  //   }
+
+  //   int temp = arr[i + 1];
+  //   arr[i + 1] = arr[h];
+  //   arr[h] = temp;
+  //   return (i + 1);
+  // }
+  void swap(List<int> arr, int i, int j) {
+    int temp = arr[i];
+    arr[i] = arr[j];
+    arr[j] = temp;
+  }
+
+  int partition(List<int> arr, int p, int start, int end) {
+    int l = start;
+    int h = end - 2;
+    int piv = arr[p];
+    swap(arr, p, end - 1);
+
+    while (l < h) {
+      if (arr[l] < piv) {
+        l++;
+      } else if (arr[h] >= piv) {
+        h--;
+      } else {
+        swap(arr, l, h);
+      }
+    }
+    int idx = h;
+    if (arr[h] < piv) idx++;
+    swap(arr, end - 1, idx);
+    return idx;
+  }
+
+  Future<double> quicksort(List<int> array) async {
+    final stopwatch = Stopwatch()..start();
+
+    stopwatch.reset();
+    Stack<int> stack = Stack<int>();
+
+    stack.push(0);
+    stack.push(array.length);
+    while (!stack.isEmpty) {
+      int end = stack.pop();
+      int start = stack.pop();
+      if (end - start < 2) continue;
+      int p = (start + ((end - start) ~/ 2));
+      p = partition(array, p, start, end);
+
+      stack.push(p + 1);
+      stack.push(end);
+
+      stack.push(start);
+      stack.push(p);
+    }
+
+    stopwatch.stop();
+    print(
+        'quickSort() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
+    return stopwatch.elapsed.inMicroseconds / 100000;
+  }
+  // Future<double> quicksort(List array, int izq, int der) async {
+  //   final stopwatch = Stopwatch()..start();
+
+  //   stopwatch.reset();
+
+  //   equicksort(array, izq, der);
+
+  //   stopwatch.stop();
+  //   print(
+  //       'quickSort() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
+  //   return stopwatch.elapsed.inMicroseconds / 100000;
+  // }
+
+  // void equicksort(List array, int leftelement, int rightelement) {
+  //   int i = leftelement;
+  //   int j = rightelement;
+  //   int pivotelement = array[(leftelement + rightelement) ~/ 2];
+
+  //   while (i <= j) {
+  //     while (array[i] < pivotelement) {
+  //       i++;
+  //     }
+
+  //     while (array[j] > pivotelement) {
+  //       j--;
+  //     }
+
+  //     if (i <= j) {
+  //       int objtemp = array[i];
+  //       array[i] = array[j];
+  //       array[j] = objtemp;
+  //       i++;
+  //       j--;
+  //     }
+  //   }
+
+  //   if (leftelement < j) {
+  //     equicksort(array, leftelement, j);
+  //   }
+  //   if (i < rightelement) {
+  //     equicksort(array, i, rightelement);
+  //   }
+  // }
 }

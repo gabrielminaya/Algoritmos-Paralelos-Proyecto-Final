@@ -12,9 +12,8 @@ class Algorithms {
       }
     }
     stopwatch.stop();
-    print("secuencial$array");
-    print(
-        'busquedaSecuencial() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
+
+    array.sort();
 
     return stopwatch.elapsed.inMicroseconds / 100000;
   }
@@ -37,9 +36,6 @@ class Algorithms {
       }
     }
     stopwatch.stop();
-    print("bubble $array");
-    print(
-        'bubbleSort() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
     return stopwatch.elapsed.inMicroseconds / 100000;
   }
 
@@ -60,9 +56,6 @@ class Algorithms {
     }
 
     stopwatch.stop();
-    print("insertion $array");
-    print(
-        'insertionSort() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
     return stopwatch.elapsed.inMicroseconds / 100000;
   }
 
@@ -87,9 +80,6 @@ class Algorithms {
       }
     }
     stopwatch.stop();
-    print("binary $array");
-    print(
-        'binarySearch() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
     return stopwatch.elapsed.inMicroseconds / 100000;
   }
 
@@ -162,9 +152,6 @@ class Algorithms {
     }
 
     stopwatch.stop();
-    print("quicksort $array");
-    print(
-        'quickSort() executed in ${stopwatch.elapsed.inMicroseconds / 100000}s');
     return stopwatch.elapsed.inMicroseconds / 100000;
   }
   // Future<double> quicksort(List array, int izq, int der) async {
